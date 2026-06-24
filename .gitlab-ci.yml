@@ -1,0 +1,25 @@
+# GitCode CI/CD：推送后自动构建并部署 Pages
+# 产物目录必须为 public（GitLab Pages 约定）
+image: node:22-bookworm
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - vitepress/node_modules/
+
+pages:
+  stage: deploy
+  script:
+    - cd vitepress
+    - npm ci
+    - npm run docs:build
+    - cd ..
+    - rm -rf public
+    - mkdir -p public
+    - cp -r vitepress/docs/.vitepress/dist/* public/
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+    - if: $CI_COMMIT_BRANCH == "main"

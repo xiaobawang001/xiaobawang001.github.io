@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+vitepress/docs/.vitepress/dist/
+vitepress/docs/.vitepress/cache/
+public/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.log
+.tmp/

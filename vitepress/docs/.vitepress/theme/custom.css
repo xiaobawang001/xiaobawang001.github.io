@@ -1,0 +1,689 @@
+/* ========== 语雀风格设计令牌 ========== */
+:root {
+  --yuque-page-bg: #f4f5f5;
+  --yuque-paper-bg: #ffffff;
+  --yuque-sidebar-bg: #ffffff;
+  --yuque-border: #e7e9e8;
+  --yuque-border-light: #eff0f0;
+  --yuque-text: #262626;
+  --yuque-text-secondary: #8a8f8d;
+  --yuque-brand: #00b96b;
+  --yuque-brand-hover: #009456;
+  --yuque-brand-soft: rgba(0, 185, 107, 0.1);
+  --yuque-folder: #f5a623;
+  --yuque-shadow-paper: 0 1px 4px rgba(0, 0, 0, 0.05), 0 4px 24px rgba(0, 0, 0, 0.04);
+  --yuque-font: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+
+  --vp-sidebar-width: 280px;
+  --vp-sidebar-padding-x: 12px;
+  --vp-nav-height: 56px;
+  --vp-outline-width: 280px;
+  --vp-outline-strip-width: 48px;
+  --vp-nav-bg-color: var(--yuque-sidebar-bg);
+  --vp-sidebar-bg-color: var(--yuque-sidebar-bg);
+  --vp-c-bg: var(--yuque-page-bg);
+  --vp-c-bg-alt: var(--yuque-paper-bg);
+  --vp-c-text-1: var(--yuque-text);
+  --vp-c-text-2: var(--yuque-text-secondary);
+  --vp-c-divider: var(--yuque-border);
+  --vp-c-gutter: var(--yuque-border-light);
+  --vp-c-brand-1: var(--yuque-brand);
+  --vp-c-brand-2: var(--yuque-brand-hover);
+  --vp-c-brand-3: #26c07d;
+  --vp-c-brand-soft: var(--yuque-brand-soft);
+  --vp-sidebar-icon-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 5a2 2 0 0 1 2-2h5.2a1 1 0 0 1 .7.3L13 6h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z'/%3E%3C/svg%3E");
+  --vp-sidebar-icon-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.75' viewBox='0 0 24 24'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 2v6h6'/%3E%3C/svg%3E");
+}
+
+.dark {
+  --yuque-page-bg: #1a1b1e;
+  --yuque-paper-bg: #232428;
+  --yuque-sidebar-bg: #1e1f23;
+  --yuque-border: #2e2f33;
+  --yuque-border-light: #26272b;
+  --yuque-text: #e8e8e8;
+  --yuque-text-secondary: #9b9b9b;
+  --yuque-brand: #3dd68c;
+  --yuque-brand-hover: #2ec47d;
+  --yuque-brand-soft: rgba(61, 214, 140, 0.12);
+  --yuque-folder: #e8a838;
+  --yuque-shadow-paper: 0 2px 12px rgba(0, 0, 0, 0.35);
+  --vp-nav-bg-color: var(--yuque-sidebar-bg);
+}
+
+body {
+  font-family: var(--yuque-font) !important;
+}
+
+/* ========== 页面背景 ========== */
+.VPContent {
+  background: var(--yuque-page-bg) !important;
+}
+
+/* ========== 侧栏 ========== */
+.VPSidebar {
+  padding: 12px var(--vp-sidebar-padding-x) 48px !important;
+  width: calc(100vw - 48px) !important;
+  max-width: 300px !important;
+  background: var(--yuque-sidebar-bg) !important;
+  border-right: 1px solid var(--yuque-border) !important;
+  box-shadow: none !important;
+}
+
+@media (min-width: 960px) {
+  .VPSidebar {
+    padding-top: calc(var(--vp-nav-height) + 4px) !important;
+    padding-right: var(--vp-sidebar-padding-x) !important;
+    padding-bottom: 32px !important;
+    padding-left: var(--vp-sidebar-padding-x) !important;
+    width: var(--vp-sidebar-width) !important;
+    max-width: var(--vp-sidebar-width) !important;
+  }
+
+  .VPSidebar .curtain {
+    margin-right: calc(var(--vp-sidebar-padding-x) * -1) !important;
+    margin-left: calc(var(--vp-sidebar-padding-x) * -1) !important;
+  }
+
+  .VPSidebar .nav {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .VPSidebar .group {
+    width: 100% !important;
+    padding-top: 2px !important;
+    box-sizing: border-box;
+  }
+
+  .VPSidebar .group + .group {
+    padding-top: 6px !important;
+  }
+}
+
+/* 层级缩进 — 语雀式细线 */
+.VPSidebar .VPSidebarItem.level-0 {
+  padding-bottom: 8px !important;
+}
+
+.VPSidebar .VPSidebarItem.collapsed.level-0 {
+  padding-bottom: 2px !important;
+}
+
+.VPSidebar .VPSidebarItem.level-0 > .items,
+.VPSidebar .VPSidebarItem.level-1 .items,
+.VPSidebar .VPSidebarItem.level-2 .items,
+.VPSidebar .VPSidebarItem.level-3 .items,
+.VPSidebar .VPSidebarItem.level-4 .items,
+.VPSidebar .VPSidebarItem.level-5 .items {
+  margin-left: 6px !important;
+  padding-left: 10px !important;
+  border-left: 1px solid var(--yuque-border-light) !important;
+}
+
+/* 菜单项 */
+.VPSidebar .VPSidebarItem .item {
+  display: flex !important;
+  align-items: center !important;
+  padding: 3px 6px !important;
+  border-radius: 6px !important;
+  box-sizing: border-box;
+  transition: background-color 0.15s;
+}
+
+.VPSidebar .VPSidebarItem .item:hover {
+  background: var(--yuque-brand-soft) !important;
+}
+
+.VPSidebar .VPSidebarItem .text {
+  display: inline-flex !important;
+  align-items: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 24px !important;
+  font-size: 14px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  color: var(--yuque-text) !important;
+}
+
+.VPSidebar .VPSidebarItem.collapsible > .item .text::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  background-color: var(--yuque-folder);
+  opacity: 0.95;
+  -webkit-mask: var(--vp-sidebar-icon-folder) no-repeat center / contain;
+  mask: var(--vp-sidebar-icon-folder) no-repeat center / contain;
+}
+
+.VPSidebar .VPSidebarItem.is-link:not(.collapsible) > .item .text::before {
+  content: '';
+  display: inline-block;
+  flex-shrink: 0;
+  width: 13px;
+  height: 13px;
+  margin-right: 7px;
+  background-color: var(--yuque-text-secondary);
+  opacity: 0.5;
+  -webkit-mask: var(--vp-sidebar-icon-file) no-repeat center / contain;
+  mask: var(--vp-sidebar-icon-file) no-repeat center / contain;
+}
+
+.VPSidebar .VPSidebarItem .indicator {
+  display: none !important;
+}
+
+/* 选中：语雀式浅绿底 */
+.VPSidebar .VPSidebarItem.is-link.is-active > .item {
+  background: var(--yuque-brand-soft) !important;
+}
+
+.VPSidebar .VPSidebarItem.is-link.is-active > .item .link .text,
+.VPSidebar .VPSidebarItem.is-link.is-active > .item > .text {
+  color: var(--yuque-brand) !important;
+  font-weight: 600 !important;
+  text-decoration: none !important;
+}
+
+.VPSidebar .VPSidebarItem.is-link.is-active > .item .text::before {
+  opacity: 1;
+  background-color: var(--yuque-brand);
+}
+
+.VPSidebar .VPSidebarItem.level-0 > .item > .text,
+.VPSidebar .VPSidebarItem.level-0 > .item > .link > .text {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.VPSidebar .VPSidebarItem.collapsible > .item {
+  justify-content: flex-start !important;
+  gap: 2px !important;
+}
+
+.VPSidebar .VPSidebarItem.collapsible > .item .link {
+  flex-grow: 0 !important;
+  flex-shrink: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.VPSidebar .VPSidebarItem .caret {
+  order: -1 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 18px !important;
+  height: 22px !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  color: var(--yuque-text-secondary) !important;
+}
+
+/* ========== 顶栏 ========== */
+.VPNavBar {
+  height: var(--vp-nav-height) !important;
+  background-color: var(--yuque-sidebar-bg) !important;
+  border-bottom: 1px solid var(--yuque-border) !important;
+  backdrop-filter: none !important;
+}
+
+.VPNavBar .wrapper {
+  padding: 0 16px !important;
+  height: var(--vp-nav-height);
+}
+
+.VPNavBar .container {
+  max-width: 100% !important;
+  height: var(--vp-nav-height) !important;
+}
+
+.VPNavBar .content-body {
+  height: var(--vp-nav-height) !important;
+  background-color: transparent !important;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .title {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: var(--vp-sidebar-width) !important;
+    height: var(--vp-nav-height) !important;
+    padding: 0 var(--vp-sidebar-padding-x) !important;
+    background-color: var(--yuque-sidebar-bg) !important;
+    border-right: 1px solid var(--yuque-border);
+    box-sizing: border-box;
+  }
+
+  .VPNavBar.has-sidebar .content {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 16px !important;
+  }
+
+  .VPNavBar.has-sidebar .divider {
+    padding-left: var(--vp-sidebar-width) !important;
+  }
+
+  .VPNavBarTitle.has-sidebar .title {
+    padding-left: calc(var(--vp-sidebar-padding-x) + 4px);
+  }
+}
+
+.VPNavBarTitle .title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  height: var(--vp-nav-height) !important;
+  color: var(--yuque-text) !important;
+}
+
+.VPNavBarTitle.has-sidebar .title {
+  border-bottom: none !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink {
+  height: 32px !important;
+  line-height: 32px !important;
+  padding: 0 14px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 6px !important;
+  color: var(--yuque-text-secondary) !important;
+  transition: color 0.15s, background-color 0.15s !important;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink:hover,
+.VPNavBarMenu .VPNavBarMenuLink.active {
+  color: var(--yuque-brand) !important;
+  background-color: var(--yuque-brand-soft) !important;
+}
+
+.VPNavBarSocialLinks {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .VPNavBarSocialLinks {
+    display: flex !important;
+    align-items: center;
+  }
+}
+
+.VPNavBar .divider-line {
+  background-color: var(--yuque-border) !important;
+}
+
+/* ========== 侧栏收起 / 悬浮 ========== */
+@media (min-width: 960px) {
+  html.blog-sidebar-collapsed .VPContent.has-sidebar {
+    padding-left: 0 !important;
+  }
+
+  html.blog-sidebar-collapsed .VPNavBar.has-sidebar .title {
+    width: auto !important;
+    min-width: 0 !important;
+    border-right: none !important;
+  }
+
+  html.blog-sidebar-collapsed .VPNavBar.has-sidebar .content {
+    padding-left: 16px !important;
+  }
+
+  html.blog-sidebar-collapsed .VPNavBar.has-sidebar .divider {
+    padding-left: 0 !important;
+  }
+
+  html.blog-sidebar-collapsed:not(.blog-sidebar-hover) .VPSidebar {
+    transform: translateX(calc(-1 * var(--vp-sidebar-width))) !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  html.blog-sidebar-collapsed.blog-sidebar-hover .VPSidebar {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08) !important;
+    z-index: calc(var(--vp-z-index-sidebar) + 2) !important;
+  }
+}
+
+/* ========== 正文「纸张」阅读区 ========== */
+@media (min-width: 960px) {
+  .VPDoc .container {
+    max-width: none !important;
+  }
+
+  .VPDoc .content {
+    padding: 16px 20px 48px !important;
+  }
+
+  .VPDoc .content .content-container {
+    background: var(--yuque-paper-bg) !important;
+    border-radius: 8px !important;
+    box-shadow: var(--yuque-shadow-paper) !important;
+    border: 1px solid var(--yuque-border-light) !important;
+    padding: 40px 56px 64px !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    min-height: calc(100vh - var(--vp-nav-height) - 64px) !important;
+  }
+}
+
+/* 正文排版 */
+.vp-doc {
+  font-size: 16px !important;
+  line-height: 1.74 !important;
+  color: var(--yuque-text) !important;
+  letter-spacing: 0.02em;
+}
+
+.vp-doc h1 {
+  font-size: 32px !important;
+  font-weight: 600 !important;
+  margin: 0 0 24px !important;
+  padding-bottom: 16px !important;
+  border-bottom: 1px solid var(--yuque-border-light) !important;
+  letter-spacing: -0.01em;
+}
+
+.vp-doc h2 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  margin: 40px 0 16px !important;
+  padding-bottom: 8px !important;
+  border-bottom: 1px solid var(--yuque-border-light) !important;
+}
+
+.vp-doc h3 {
+  font-size: 20px !important;
+  font-weight: 600 !important;
+  margin: 32px 0 12px !important;
+}
+
+.vp-doc p {
+  margin: 16px 0 !important;
+}
+
+.vp-doc a {
+  color: var(--yuque-brand) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.vp-doc a:hover {
+  border-bottom-color: var(--yuque-brand) !important;
+}
+
+.vp-doc blockquote {
+  margin: 16px 0 !important;
+  padding: 12px 16px !important;
+  border-left: 4px solid var(--yuque-brand) !important;
+  background: var(--yuque-brand-soft) !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+.vp-doc :not(pre) > code {
+  font-size: 0.9em !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: var(--yuque-border-light) !important;
+  color: #c7254e !important;
+}
+
+.vp-doc pre {
+  border-radius: 8px !important;
+  border: 1px solid var(--yuque-border) !important;
+}
+
+.vp-doc table {
+  border-radius: 8px !important;
+  overflow: hidden;
+  border: 1px solid var(--yuque-border) !important;
+}
+
+.vp-doc th {
+  background: var(--yuque-border-light) !important;
+  font-weight: 600 !important;
+}
+
+/* ========== 首页语雀风 ========== */
+.VPHome {
+  background: var(--yuque-page-bg) !important;
+}
+
+.VPHome .VPHero {
+  padding: 72px 24px 48px !important;
+  background: linear-gradient(180deg, var(--yuque-paper-bg) 0%, var(--yuque-page-bg) 100%) !important;
+}
+
+.VPHome .VPHero .name {
+  font-size: 42px !important;
+  font-weight: 700 !important;
+  color: var(--yuque-text) !important;
+}
+
+.VPHome .VPHero .text {
+  font-size: 28px !important;
+  font-weight: 500 !important;
+  color: var(--yuque-text-secondary) !important;
+}
+
+.VPHome .VPHero .tagline {
+  font-size: 16px !important;
+  color: var(--yuque-text-secondary) !important;
+}
+
+.VPHome .VPHero .action .VPButton.brand {
+  background: var(--yuque-brand) !important;
+  border-color: var(--yuque-brand) !important;
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  padding: 0 24px !important;
+  height: 40px !important;
+}
+
+.VPHome .VPHero .action .VPButton.brand:hover {
+  background: var(--yuque-brand-hover) !important;
+  border-color: var(--yuque-brand-hover) !important;
+}
+
+.VPHome .VPHero .action .VPButton.alt {
+  border-radius: 6px !important;
+  border-color: var(--yuque-border) !important;
+  color: var(--yuque-text) !important;
+  height: 40px !important;
+}
+
+.VPHome .VPFeature {
+  background: var(--yuque-paper-bg) !important;
+  border: 1px solid var(--yuque-border-light) !important;
+  border-radius: 8px !important;
+  box-shadow: var(--yuque-shadow-paper) !important;
+  transition: transform 0.2s, box-shadow 0.2s !important;
+}
+
+.VPHome .VPFeature:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.VPHome .VPFeature .title {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  color: var(--yuque-text) !important;
+}
+
+.VPHome .VPFeatures {
+  padding: 32px 24px 64px !important;
+}
+
+/* ========== 右侧目录 ========== */
+.VPDocAsideOutline .outline-title {
+  display: none !important;
+}
+
+.VPDocAsideOutline .content {
+  font-size: 14px !important;
+  padding-left: 12px !important;
+  border-left-color: var(--yuque-border-light) !important;
+}
+
+.VPDocAsideOutline .outline-link {
+  font-size: 14px !important;
+  line-height: 32px !important;
+  color: var(--yuque-text-secondary) !important;
+  transition: color 0.15s;
+}
+
+.VPDocAsideOutline .outline-link.nested {
+  font-size: 13px !important;
+  line-height: 28px !important;
+}
+
+@media (min-width: 1280px) {
+  html.blog-outline-pinned .aside {
+    max-width: none !important;
+    padding-left: 0 !important;
+    overflow: visible !important;
+  }
+
+  html.blog-outline-pinned .aside-container {
+    position: fixed !important;
+    right: 0 !important;
+    left: auto !important;
+    top: var(--vp-nav-height) !important;
+    width: var(--vp-outline-width) !important;
+    min-width: var(--vp-outline-width) !important;
+    height: calc(100vh - var(--vp-nav-height)) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    padding: 16px 14px 32px 16px !important;
+    background: var(--yuque-sidebar-bg) !important;
+    border-left: 1px solid var(--yuque-border) !important;
+    box-shadow: none !important;
+    overflow-y: auto !important;
+    z-index: 50 !important;
+  }
+
+  html.blog-outline-pinned .aside-curtain {
+    right: 0 !important;
+    left: auto !important;
+    width: var(--vp-outline-width) !important;
+    opacity: 1 !important;
+  }
+
+  html.blog-outline-pinned .OutlineHoverStrip {
+    display: none !important;
+  }
+
+  html.blog-outline-unpinned:not(.blog-outline-hover) .aside {
+    max-width: 0 !important;
+    padding-left: 0 !important;
+    overflow: visible !important;
+  }
+
+  html.blog-outline-unpinned:not(.blog-outline-hover) .aside-container,
+  html.blog-outline-unpinned:not(.blog-outline-hover) .aside-curtain {
+    width: 0 !important;
+    min-width: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    overflow: hidden !important;
+  }
+
+  html.blog-outline-unpinned.blog-outline-hover .aside {
+    max-width: none !important;
+    overflow: visible !important;
+    z-index: 199 !important;
+  }
+
+  html.blog-outline-unpinned.blog-outline-hover .aside-container {
+    position: fixed !important;
+    right: 0 !important;
+    left: auto !important;
+    top: var(--vp-nav-height) !important;
+    width: var(--vp-outline-width) !important;
+    min-width: var(--vp-outline-width) !important;
+    height: calc(100vh - var(--vp-nav-height)) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    padding: 16px 14px 32px 16px !important;
+    background: var(--yuque-paper-bg) !important;
+    border-left: 1px solid var(--yuque-border) !important;
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.08) !important;
+    border-radius: 8px 0 0 8px !important;
+    overflow-y: auto !important;
+    z-index: 199 !important;
+  }
+
+  html.blog-outline-unpinned.blog-outline-hover .aside-curtain {
+    right: 0 !important;
+    left: auto !important;
+    width: var(--vp-outline-width) !important;
+    opacity: 1 !important;
+    z-index: 199 !important;
+  }
+}
+
+.VPDocAsideOutline .outline-link.active {
+  color: var(--yuque-brand) !important;
+  font-weight: 600 !important;
+  background: var(--yuque-brand-soft) !important;
+  border-radius: 4px;
+  padding: 0 8px !important;
+  margin-left: -8px;
+  line-height: 28px !important;
+}
+
+.VPDocAsideOutline .outline-marker {
+  opacity: 1 !important;
+  width: 2px !important;
+  height: 20px !important;
+  background-color: var(--yuque-brand) !important;
+  border-radius: 1px;
+}
+
+.VPDocAsideOutline .outline-link:hover {
+  color: var(--yuque-brand) !important;
+}
+
+/* ========== 侧栏全部折叠（工具栏按钮） ========== */
+html.blog-folders-all-collapsed #VPSidebarNav .VPSidebarItem > .items {
+  display: none !important;
+}
+
+html.blog-folders-all-collapsed #VPSidebarNav .VPSidebarItem.collapsible .caret-icon {
+  transform: rotate(0) !important;
+}
+
+/* 工具栏组件 */
+.SidebarToolbar,
+.OutlineToolbar {
+  border-bottom-color: var(--yuque-border-light) !important;
+}
+
+.SidebarToolbar .tb-btn,
+.OutlineToolbar .tb-btn {
+  border-radius: 6px !important;
+}
+
+.SidebarToolbar .tb-btn:hover,
+.OutlineToolbar .tb-btn:hover,
+.SidebarToolbar .tb-btn.active,
+.OutlineToolbar .tb-btn.active {
+  background: var(--yuque-brand-soft) !important;
+  color: var(--yuque-brand) !important;
+}
+
+.OutlineToolbar .tb-label {
+  color: var(--yuque-text) !important;
+}
