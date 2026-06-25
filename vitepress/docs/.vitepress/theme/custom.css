@@ -163,8 +163,7 @@ html.blog-wallpaper-active .aside-container .VPDocAsideOutline .outline-link.act
   background: var(--yuque-brand-soft) !important;
 }
 
-html.blog-wallpaper-active .VPHome .VPFeature,
-html.blog-wallpaper-active .VPHome .VPHero {
+html.blog-wallpaper-active .VPHome .VPFeature {
   background: color-mix(
     in srgb,
     var(--yuque-paper-bg) calc(var(--blog-ui-opacity) * 100%),
@@ -719,31 +718,82 @@ html:not(.dark) .vp-doc .vp-code span {
   font-weight: 600 !important;
 }
 
-/* ========== 首页语雀风 ========== */
+/* ========== 首页布局与语雀风 ========== */
+@media (min-width: 960px) {
+  .VPContent.is-home.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 0 !important;
+    max-width: none !important;
+  }
+}
+
+@media (min-width: 1440px) {
+  .VPContent.is-home.has-sidebar {
+    padding-left: var(--vp-sidebar-width) !important;
+    padding-right: 0 !important;
+  }
+}
+
 .VPHome {
   background: var(--yuque-page-bg) !important;
+  margin-bottom: 48px !important;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .VPHome .VPHero {
-  padding: 72px 24px 48px !important;
-  background: linear-gradient(180deg, var(--yuque-paper-bg) 0%, var(--yuque-page-bg) 100%) !important;
+  margin-top: 0 !important;
+  padding: 56px 24px 32px !important;
+  background: transparent !important;
+}
+
+.VPHome .VPHero .container {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.VPHome .VPHero .main {
+  width: 100%;
+  max-width: none;
+}
+
+.VPHome .VPHero .heading {
+  align-items: center;
+}
+
+.VPHome .VPHero .name,
+.VPHome .VPHero .text {
+  margin: 0 auto;
+  max-width: none;
 }
 
 .VPHome .VPHero .name {
-  font-size: 42px !important;
+  font-size: 36px !important;
   font-weight: 700 !important;
   color: var(--yuque-text) !important;
+  line-height: 1.2 !important;
 }
 
 .VPHome .VPHero .text {
-  font-size: 28px !important;
+  font-size: 22px !important;
   font-weight: 500 !important;
   color: var(--yuque-text-secondary) !important;
+  line-height: 1.35 !important;
+  margin-top: 8px;
 }
 
 .VPHome .VPHero .tagline {
-  font-size: 16px !important;
+  margin: 16px auto 0;
+  max-width: 480px;
+  font-size: 15px !important;
+  line-height: 1.6 !important;
   color: var(--yuque-text-secondary) !important;
+}
+
+.VPHome .VPHero .actions {
+  justify-content: center;
+  padding-top: 28px !important;
 }
 
 .VPHome .VPHero .action .VPButton.brand {
@@ -767,12 +817,22 @@ html:not(.dark) .vp-doc .vp-code span {
   height: 40px !important;
 }
 
+.VPHome .VPFeatures {
+  padding: 8px 24px 48px !important;
+}
+
+.VPHome .VPFeatures .container {
+  max-width: 720px;
+}
+
 .VPHome .VPFeature {
   background: var(--yuque-paper-bg) !important;
   border: 1px solid var(--yuque-border-light) !important;
   border-radius: 8px !important;
   box-shadow: var(--yuque-shadow-paper) !important;
   transition: transform 0.2s, box-shadow 0.2s !important;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .VPHome .VPFeature:hover {
@@ -781,13 +841,15 @@ html:not(.dark) .vp-doc .vp-code span {
 }
 
 .VPHome .VPFeature .title {
-  font-size: 16px !important;
+  font-size: 15px !important;
   font-weight: 600 !important;
   color: var(--yuque-text) !important;
 }
 
-.VPHome .VPFeatures {
-  padding: 32px 24px 64px !important;
+.VPHome .VPFeature .details {
+  font-size: 14px !important;
+  line-height: 1.6 !important;
+  color: var(--yuque-text-secondary) !important;
 }
 
 /* ========== 右侧目录 ========== */

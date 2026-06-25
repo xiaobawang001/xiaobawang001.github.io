@@ -20,7 +20,7 @@ const vitePressConfig = defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '发布指南', link: '/guide/publish' },
-      { text: 'GitHub', link: `https://github.com/${GITHUB_USER}` },
+      { text: 'GitHub', link: `https://github.com/${GITHUB_USER}/${SITE_REPO}` },
     ],
     outline: {
       label: '文章目录',
