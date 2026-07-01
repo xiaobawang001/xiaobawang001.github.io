@@ -24,7 +24,7 @@ https://xiaobawang001.github.io/blog/
 ### 第 2 步：重新运行部署
 
 1. 打开 https://github.com/xiaobawang001/blog/actions/workflows/deploy.yml
-2. 点击 **Run workflow** → 选 `main` → **Run workflow**
+2. 点击 **Run workflow** → 选 `master` → **Run workflow**
 3. 等约 1～2 分钟，**build** 和 **deploy** 都变绿 ✓
 
 ### 第 3 步：确认站点
@@ -52,7 +52,7 @@ Your site is live at https://xiaobawang001.github.io/blog/
 ```bash
 git add .
 git commit -m "docs: 更新笔记"
-git push github master:main
+git push github master
 ```
 
 推送后 Actions 会自动重新部署。

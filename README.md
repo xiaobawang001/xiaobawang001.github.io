@@ -23,10 +23,10 @@ npm run docs:dev
 
 ## 部署
 
-推送 `main` 分支后 GitHub Actions 自动构建发布。详见 [GITHUB_DEPLOY.md](GITHUB_DEPLOY.md)。
+推送 `master` 分支后 GitHub Actions 自动构建发布。详见 [GITHUB_DEPLOY.md](GITHUB_DEPLOY.md)。
 
 ```bash
-git push github master:main
+git push github master
 ```
 
 ## 写作
