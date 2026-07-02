@@ -1,6 +1,7 @@
 ---
 title: psql安装
 order: 0
+tags: [docker, psql, 数据库]
 ---
 
 # psql安装

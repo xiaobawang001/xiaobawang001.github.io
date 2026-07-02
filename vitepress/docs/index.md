@@ -3,20 +3,21 @@ layout: home
 markdownStyles: false
 
 hero:
-  name: xiaobawang001
-  text: 个人知识库
-  tagline: Markdown 书写，推送到 GitHub 自动发布
+  name: 知识库
+  tagline: 阅读、检索与发布
   actions:
     - theme: brand
       text: 开始阅读
-      link: /guide/
+      link: /guide/site-features
     - theme: alt
-      text: 发布指南
-      link: /guide/publish
+      text: 站点导航
+      link: /sitemap
 
 features:
-  - title: 语雀风阅读
-    details: 灰底白纸、侧栏树与文章目录，专注阅读
-  - title: 自动构建
-    details: 推送代码即构建并部署到 GitHub Pages
+  - title: 沉浸式阅读
+    details: 纸张布局、壁纸背景、字号与宽度可调
+  - title: 知识检索
+    details: 全文搜索、标签筛选、站点导航
+  - title: 自动发布
+    details: Markdown 书写，推送即构建部署
 ---

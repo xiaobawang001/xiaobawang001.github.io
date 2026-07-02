@@ -1,4 +1,5 @@
 import { onMounted, ref } from 'vue'
+import { persistUiPrefs } from './use-sidebar-persist'
 
 export const foldersExpanded = ref(true)
 export const allFoldersForcedCollapsed = ref(false)
@@ -81,11 +82,13 @@ export function useBlogUi() {
       requestAnimationFrame(() => expandAllSidebarFolders())
     }
     applyUiClasses()
+    persistUiPrefs()
   }
 
   function toggleOutline() {
     outlineExpanded.value = !outlineExpanded.value
     applyUiClasses()
+    persistUiPrefs()
   }
 
   return {

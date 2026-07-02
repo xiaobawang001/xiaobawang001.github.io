@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref } from 'vue'
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useBackground, OPACITY_MIN } from '../composables/use-background'
 import { toIconSvg } from '../utils/icon'
 import opacityIconRaw from '../../../../static/navigatebar/透明度-.svg?raw'
@@ -7,7 +7,9 @@ import opacityIconRaw from '../../../../static/navigatebar/透明度-.svg?raw'
 const { bgMode, uiOpacity, opacityMax } = useBackground()
 
 const opacityOpen = ref(false)
-const rootRef = ref<HTMLElement | null>(null)
+const buttonRef = ref<HTMLElement | null>(null)
+const panelRef = ref<HTMLElement | null>(null)
+const panelStyle = ref<Record<string, string>>({})
 
 const opacityPercent = computed(() => Math.round(uiOpacity.value * 100))
 const wallpaperEnabled = computed(() => bgMode.value !== 'none')
@@ -18,6 +20,16 @@ const sliderProgress = computed(() => {
   return `${((uiOpacity.value - OPACITY_MIN) / range) * 100}%`
 })
 
+function updatePanelPosition() {
+  const btn = buttonRef.value
+  if (!btn) return
+  const rect = btn.getBoundingClientRect()
+  panelStyle.value = {
+    top: `${rect.bottom + 8}px`,
+    right: `${window.innerWidth - rect.right}px`,
+  }
+}
+
 function toggleOpacityPanel() {
   opacityOpen.value = !opacityOpen.value
 }
@@ -25,18 +37,36 @@ function toggleOpacityPanel() {
 function onDocumentClick(e: MouseEvent) {
   if (!opacityOpen.value) return
   const target = e.target as Node
-  if (rootRef.value && !rootRef.value.contains(target)) {
+  const inButton = buttonRef.value?.contains(target)
+  const inPanel = panelRef.value?.contains(target)
+  if (!inButton && !inPanel) {
     opacityOpen.value = false
   }
 }
 
-onMounted(() => document.addEventListener('click', onDocumentClick, true))
-onUnmounted(() => document.removeEventListener('click', onDocumentClick, true))
+watch(opacityOpen, (open) => {
+  if (open) {
+    nextTick(updatePanelPosition)
+  }
+})
+
+onMounted(() => {
+  document.addEventListener('click', onDocumentClick, true)
+  window.addEventListener('resize', updatePanelPosition)
+  window.addEventListener('scroll', updatePanelPosition, true)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('click', onDocumentClick, true)
+  window.removeEventListener('resize', updatePanelPosition)
+  window.removeEventListener('scroll', updatePanelPosition, true)
+})
 </script>
 
 <template>
-  <div ref="rootRef" class="NavOpacityControl" role="group" aria-label="界面透明度">
+  <div class="NavOpacityControl" role="group" aria-label="界面透明度">
     <button
+      ref="buttonRef"
       type="button"
       class="nav-icon-btn"
       :class="{ active: opacityOpen }"
@@ -49,22 +79,30 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick, true))
       <span class="nav-icon" v-html="toIconSvg(opacityIconRaw)" />
     </button>
 
-    <div v-show="opacityOpen && wallpaperEnabled" class="opacity-panel" @click.stop>
-      <div class="opacity-panel-title">界面透明度</div>
-      <div class="opacity-panel-row">
-        <input
-          v-model.number="uiOpacity"
-          class="oval-slider"
-          type="range"
-          :min="OPACITY_MIN"
-          :max="opacityMax"
-          step="0.01"
-          aria-label="界面透明度"
-          :style="{ '--slider-progress': sliderProgress }"
-        />
-        <span class="opacity-value">{{ opacityPercent }}%</span>
+    <Teleport to="body">
+      <div
+        v-show="opacityOpen && wallpaperEnabled"
+        ref="panelRef"
+        class="opacity-panel"
+        :style="panelStyle"
+        @click.stop
+      >
+        <div class="opacity-panel-title">界面透明度</div>
+        <div class="opacity-panel-row">
+          <input
+            v-model.number="uiOpacity"
+            class="oval-slider"
+            type="range"
+            :min="OPACITY_MIN"
+            :max="opacityMax"
+            step="0.01"
+            aria-label="界面透明度"
+            :style="{ '--slider-progress': sliderProgress }"
+          />
+          <span class="opacity-value">{{ opacityPercent }}%</span>
+        </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 
@@ -121,9 +159,7 @@ onUnmounted(() => document.removeEventListener('click', onDocumentClick, true))
 }
 
 .opacity-panel {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
+  position: fixed;
   z-index: 300;
   min-width: 220px;
   padding: 12px 14px;

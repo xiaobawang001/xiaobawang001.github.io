@@ -141,12 +141,12 @@ jobs:
           if grep -q "^  base_url:" "$CONFIG"; then
             sed -i "s|^  base_url:.*|  base_url: $URL|" "$CONFIG"
           else
-            sed -i "s|# base_url:.*|  base_url: $URL|" "$CONFIG"
+            sed -i "s|^  # base_url:.*|  base_url: $URL|" "$CONFIG"
           fi
           if grep -q "^  auth_endpoint:" "$CONFIG"; then
             sed -i "s|^  auth_endpoint:.*|  auth_endpoint: auth|" "$CONFIG"
           else
-            sed -i 's|# auth_endpoint:.*|  auth_endpoint: auth|' "$CONFIG"
+            sed -i 's|^  # auth_endpoint:.*|  auth_endpoint: auth|' "$CONFIG"
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -7,9 +7,8 @@ backend:
   name: github
   repo: xiaobawang001/blog
   branch: master
-  # 部署 Cloudflare OAuth Worker 后，取消注释并填入你的 Worker 域名：
-    base_url: https://blog-cms-oauth.blog-oauth-9c03ab1fd2.workers.dev
-    auth_endpoint: auth
+  base_url: https://blog-cms-oauth.blog-oauth-9c03ab1fd2.workers.dev
+  auth_endpoint: auth
 
 locale: zh_Hans
 

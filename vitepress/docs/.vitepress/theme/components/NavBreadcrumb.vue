@@ -24,9 +24,10 @@ const { crumbs, visible } = useBreadcrumb()
   align-items: center;
   flex: 1;
   min-width: 0;
+  min-height: 20px;
   overflow: hidden;
   font-size: 14px;
-  line-height: 1;
+  line-height: 20px;
   color: var(--yuque-text-secondary);
   pointer-events: none;
   user-select: none;
@@ -45,11 +46,13 @@ const { crumbs, visible } = useBreadcrumb()
 }
 
 .crumb.is-last .label {
+  display: block;
   color: var(--yuque-text);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  line-height: 20px;
 }
 
 .crumb:not(.is-last) {
@@ -63,6 +66,7 @@ const { crumbs, visible } = useBreadcrumb()
 }
 
 .label {
+  line-height: 20px;
   white-space: nowrap;
 }
 </style>

@@ -1,26 +1,44 @@
 <script setup lang="ts">
-import { nextTick, onMounted, onUnmounted, watch } from 'vue'
-import { useRoute } from 'vitepress'
+import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
+import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import siteAvatar from '../../../static/navigatebar/头像.jpg'
 import NavBreadcrumb from './components/NavBreadcrumb.vue'
 import NavBackgroundToggle from './components/NavBackgroundToggle.vue'
 import NavOpacityControl from './components/NavOpacityControl.vue'
+import NavFontSizeControl from './components/NavFontSizeControl.vue'
+import NavContentWidthControl from './components/NavContentWidthControl.vue'
+import NavFocusModeControl from './components/NavFocusModeControl.vue'
 import PageBackground from './components/PageBackground.vue'
 import SidebarToolbar from './components/SidebarToolbar.vue'
 import OutlineToolbar from './components/OutlineToolbar.vue'
 import ReadingProgress from './components/ReadingProgress.vue'
 import BackToTop from './components/BackToTop.vue'
+import ImageZoom from './components/ImageZoom.vue'
+import RelatedArticles from './components/RelatedArticles.vue'
+import DocTags from './components/DocTags.vue'
+import PlantumlRender from './components/PlantumlRender.vue'
+import GraphvizRender from './components/GraphvizRender.vue'
+import InPageSearch from './components/InPageSearch.vue'
+import MermaidRender from './components/MermaidRender.vue'
+import SiteFooter from './components/SiteFooter.vue'
 import { applyBackgroundClasses } from './composables/use-background'
 import { clearForcedFolderCollapse } from './composables/blog-ui'
+import { setupHeadingAnchorShare } from './composables/heading-anchor-share'
+import { setupCodeBlockEnhance } from './composables/code-block-enhance'
 import { setupOutlineNavigation } from './composables/outline-nav'
 import { setupSidebarLayout } from './composables/sidebar-layout'
+import { setupSidebarPersist } from './composables/use-sidebar-persist'
 
 const { Layout: DefaultLayout } = DefaultTheme
 const route = useRoute()
+const { frontmatter } = useData()
+const isHome = computed(() => frontmatter.value.layout === 'home')
 
 let removeSidebarNavClick: (() => void) | null = null
 let removeOutlineNavigation: (() => void) | null = null
+let removeSidebarPersist: (() => void) | null = null
+let removeHeadingAnchorShare: (() => void) | null = null
 
 function bindSidebarNavClick() {
   const onSidebarNavClick = (e: MouseEvent) => {
@@ -37,24 +55,31 @@ function bindSidebarNavClick() {
   removeSidebarNavClick = () => nav.removeEventListener('click', onSidebarNavClick, true)
 }
 
-function refreshSidebarLayout() {
+function refreshDocEnhancements() {
   nextTick(() => {
     setupSidebarLayout()
     bindSidebarNavClick()
+    removeSidebarPersist?.()
+    removeSidebarPersist = setupSidebarPersist()
+    removeHeadingAnchorShare?.()
+    removeHeadingAnchorShare = setupHeadingAnchorShare()
+    setupCodeBlockEnhance()
   })
 }
 
 onMounted(() => {
   applyBackgroundClasses()
-  refreshSidebarLayout()
+  refreshDocEnhancements()
   removeOutlineNavigation = setupOutlineNavigation()
 })
 
-watch(() => route.path, refreshSidebarLayout)
+watch(() => route.path, refreshDocEnhancements)
 
 onUnmounted(() => {
   removeSidebarNavClick?.()
   removeOutlineNavigation?.()
+  removeSidebarPersist?.()
+  removeHeadingAnchorShare?.()
 })
 </script>
 
@@ -62,6 +87,11 @@ onUnmounted(() => {
   <PageBackground />
   <ReadingProgress />
   <BackToTop />
+  <ImageZoom />
+  <InPageSearch />
+  <PlantumlRender />
+  <GraphvizRender />
+  <MermaidRender />
   <DefaultLayout>
     <template #nav-bar-title-before>
       <img class="site-avatar" :src="siteAvatar" alt="" width="40" height="40" />
@@ -70,14 +100,28 @@ onUnmounted(() => {
       <NavBreadcrumb />
     </template>
     <template #nav-bar-content-after>
+      <NavFontSizeControl />
+      <NavContentWidthControl />
+      <NavFocusModeControl />
       <NavBackgroundToggle />
       <NavOpacityControl />
+    </template>
+    <template #doc-before>
+      <DocTags />
+    </template>
+    <template #doc-after>
+      <RelatedArticles />
     </template>
     <template #sidebar-nav-before>
       <SidebarToolbar />
     </template>
     <template #aside-outline-before>
       <OutlineToolbar />
+    </template>
+    <template #layout-bottom>
+      <div v-if="isHome" class="SiteFooterWrap">
+        <SiteFooter />
+      </div>
     </template>
   </DefaultLayout>
 </template>

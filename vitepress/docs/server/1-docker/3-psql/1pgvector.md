@@ -1,7 +1,7 @@
 ---
-
 title: pgvector扩展安装
 order: 1
+tags: [docker, psql, 数据库]
 ---
 
 # 安装pgvector扩展
