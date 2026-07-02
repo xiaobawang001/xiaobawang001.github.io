@@ -55,10 +55,24 @@ export default {
         return html(`<p>授权失败：${JSON.stringify(tokenData)}</p>`)
       }
 
+      const payload = JSON.stringify({ token, provider: 'github' })
       const script = [
-        `var content = { token: ${JSON.stringify(token)}, provider: "github" };`,
-        `window.opener.postMessage("authorization:github:success:" + JSON.stringify(content), "*");`,
-        `document.body.textContent = "登录成功，请关闭此窗口。";`,
+        '(function() {',
+        `  var msg = "authorization:github:success:" + ${JSON.stringify(payload)};`,
+        '  function sendToken(origin) {',
+        '    if (!window.opener) return;',
+        '    window.opener.postMessage(msg, origin || "*");',
+        '    window.close();',
+        '  }',
+        '  window.addEventListener("message", function(e) {',
+        '    if (e.data === "authorizing:github") sendToken(e.origin);',
+        '  }, false);',
+        '  if (window.opener) {',
+        '    window.opener.postMessage("authorizing:github", "*");',
+        '  } else {',
+        '    document.body.textContent = "无法连接 CMS 窗口，请返回后台重新点击登录。";',
+        '  }',
+        '})();',
       ].join('')
       return html(`<!doctype html><html><body><script>${script}</script></body></html>`)
     }
