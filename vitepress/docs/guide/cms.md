@@ -40,6 +40,16 @@ npm run docs:dev
 
 GitHub Pages 是静态托管，CMS 登录需要一个小型 **OAuth 代理**（仓库已提供 Cloudflare Worker 脚本）。
 
+### 0. 注册 Cloudflare workers.dev 子域（一次性）
+
+首次使用 Cloudflare Workers 前，需要为账号注册 `workers.dev` 子域：
+
+1. 打开 [Cloudflare Workers 入门](https://dash.cloudflare.com/?to=/:account/workers/onboarding)
+2. 按提示选择一个子域前缀（例如 `xiaobawang001`）
+3. 完成后重新运行 GitHub Actions：**Deploy CMS OAuth Worker**
+
+> GitHub Actions 也会尝试自动注册；若失败，请手动完成上述步骤。可选：在仓库 **Variables** 中设置 `CLOUDFLARE_WORKERS_SUBDOMAIN` 指定想要的前缀。
+
 ### 1. 创建 GitHub OAuth App
 
 打开 [GitHub → Settings → Developer settings → OAuth Apps → New](https://github.com/settings/applications/new)：
