@@ -20,8 +20,8 @@ jobs:
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      GITHUB_CLIENT_ID: ${{ secrets.GITHUB_OAUTH_CLIENT_ID }}
-      GITHUB_CLIENT_SECRET: ${{ secrets.GITHUB_OAUTH_CLIENT_SECRET }}
+      GITHUB_CLIENT_ID: ${{ secrets.CMS_OAUTH_CLIENT_ID }}
+      GITHUB_CLIENT_SECRET: ${{ secrets.CMS_OAUTH_CLIENT_SECRET }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -168,5 +168,5 @@ jobs:
           echo "- CMS 后台: https://xiaobawang001.github.io/blog/admin/" >> "$GITHUB_STEP_SUMMARY"
           if [ "${{ steps.oauth.outputs.configured }}" != "true" ]; then
             echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "> 下一步：用上述回调地址创建 [GitHub OAuth App](https://github.com/settings/applications/new)，将 Client ID/Secret 写入 **Repository secrets** 后重新运行本 workflow。" >> "$GITHUB_STEP_SUMMARY"
+            echo "> 下一步：用上述回调地址创建 [GitHub OAuth App](https://github.com/settings/applications/new)，将 Client ID/Secret 写入 **Repository secrets**（\`CMS_OAUTH_CLIENT_ID\`、\`CMS_OAUTH_CLIENT_SECRET\`）后重新运行本 workflow。" >> "$GITHUB_STEP_SUMMARY"
           fi
