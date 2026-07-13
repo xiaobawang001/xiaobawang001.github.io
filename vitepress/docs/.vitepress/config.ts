@@ -43,7 +43,6 @@ const vitePressConfig = defineConfig({
     nav: [
       { text: '首页', link: '/' },
       { text: '站点导航', link: '/sitemap' },
-      { text: '在线写作', link: '/admin/' },
       { text: '发布指南', link: '/guide/publish' },
       { text: 'GitHub', link: `https://github.com/${GITHUB_USER}/${SITE_REPO}` },
     ],
@@ -123,5 +122,5 @@ export default withSidebar(vitePressConfig, {
   sortMenusByFrontmatterOrder: true,
   hyphenToSpace: true,
   includeRootIndexFile: false,
-  excludeByGlobPattern: ['guide/publish.md', 'guide/cms.md', 'sitemap.md'],
+  excludeByGlobPattern: ['guide/publish.md', 'sitemap.md'],
 })

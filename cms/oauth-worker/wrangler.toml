@@ -1,7 +1,0 @@
-name = "blog-cms-oauth"
-main = "worker.js"
-compatibility_date = "2024-09-01"
-
-# 部署后执行：
-#   wrangler secret put GITHUB_CLIENT_ID
-#   wrangler secret put GITHUB_CLIENT_SECRET
