@@ -25,6 +25,7 @@ import { setupOutlineNavigation } from './composables/outline-nav'
 import { setupSidebarLayout } from './composables/sidebar-layout'
 import { setupSidebarPersist } from './composables/use-sidebar-persist'
 import { applySidebarFolderIcons } from './composables/sidebar-icons'
+import { setupOutlineCollapseClick } from './composables/use-outline-collapse'
 
 const { Layout: DefaultLayout } = DefaultTheme
 const route = useRoute()
@@ -61,6 +62,7 @@ function refreshDocEnhancements() {
     removeHeadingAnchorShare = setupHeadingAnchorShare()
     setupCodeBlockEnhance()
     applySidebarFolderIcons(theme.value.sidebar)
+    setupOutlineCollapseClick()
   })
 }
 
