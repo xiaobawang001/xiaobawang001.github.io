@@ -3,13 +3,9 @@ import { computed, nextTick, onMounted, onUnmounted, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import siteAvatar from '../../../static/navigatebar/头像.jpg'
-import NavBreadcrumb from './components/NavBreadcrumb.vue'
-import NavBackgroundToggle from './components/NavBackgroundToggle.vue'
-import NavOpacityControl from './components/NavOpacityControl.vue'
 import NavFontSizeControl from './components/NavFontSizeControl.vue'
 import NavContentWidthControl from './components/NavContentWidthControl.vue'
 import NavFocusModeControl from './components/NavFocusModeControl.vue'
-import PageBackground from './components/PageBackground.vue'
 import SidebarToolbar from './components/SidebarToolbar.vue'
 import OutlineToolbar from './components/OutlineToolbar.vue'
 import ReadingProgress from './components/ReadingProgress.vue'
@@ -22,7 +18,6 @@ import GraphvizRender from './components/GraphvizRender.vue'
 import InPageSearch from './components/InPageSearch.vue'
 import MermaidRender from './components/MermaidRender.vue'
 import SiteFooter from './components/SiteFooter.vue'
-import { applyBackgroundClasses } from './composables/use-background'
 import { clearForcedFolderCollapse } from './composables/blog-ui'
 import { setupHeadingAnchorShare } from './composables/heading-anchor-share'
 import { setupCodeBlockEnhance } from './composables/code-block-enhance'
@@ -68,7 +63,6 @@ function refreshDocEnhancements() {
 }
 
 onMounted(() => {
-  applyBackgroundClasses()
   refreshDocEnhancements()
   removeOutlineNavigation = setupOutlineNavigation()
 })
@@ -84,7 +78,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <PageBackground />
   <ReadingProgress />
   <BackToTop />
   <ImageZoom />
@@ -96,15 +89,10 @@ onUnmounted(() => {
     <template #nav-bar-title-before>
       <img class="site-avatar" :src="siteAvatar" alt="" width="40" height="40" />
     </template>
-    <template #nav-bar-content-before>
-      <NavBreadcrumb />
-    </template>
     <template #nav-bar-content-after>
       <NavFontSizeControl />
       <NavContentWidthControl />
       <NavFocusModeControl />
-      <NavBackgroundToggle />
-      <NavOpacityControl />
     </template>
     <template #doc-before>
       <DocTags />

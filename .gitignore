@@ -17,3 +17,4 @@ Thumbs.db
 # Temp
 *.log
 .tmp/
+.codebuddy/

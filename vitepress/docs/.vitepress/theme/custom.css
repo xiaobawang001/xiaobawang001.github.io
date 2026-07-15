@@ -36,7 +36,6 @@
   --vp-c-brand-2: var(--yuque-brand-hover);
   --vp-c-brand-3: #26c07d;
   --vp-c-brand-soft: var(--yuque-brand-soft);
-  --blog-ui-opacity: 1;
   --blog-content-max-width: 960px;
   --vp-sidebar-icon-folder: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M4 5a2 2 0 0 1 2-2h5.2a1 1 0 0 1 .7.3L13 6h7a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5z'/%3E%3C/svg%3E");
   --vp-sidebar-icon-file: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.75' viewBox='0 0 24 24'%3E%3Cpath d='M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z'/%3E%3Cpath d='M14 2v6h6'/%3E%3C/svg%3E");
@@ -66,129 +65,8 @@ body {
   font-family: var(--yuque-font) !important;
 }
 
-/* ========== 页面背景 ========== */
 .VPContent {
   background: var(--yuque-page-bg) !important;
-}
-
-html.blog-wallpaper-active .VPContent,
-html.blog-wallpaper-active .VPHome {
-  background: transparent !important;
-}
-
-html.blog-wallpaper-active .VPSidebar {
-  background: color-mix(
-    in srgb,
-    var(--yuque-sidebar-bg) calc(var(--blog-ui-opacity) * 100%),
-    transparent
-  ) !important;
-}
-
-html.blog-wallpaper-active .SidebarToolbar {
-  background: color-mix(
-    in srgb,
-    var(--yuque-sidebar-bg) calc(var(--blog-ui-opacity) * 100%),
-    transparent
-  ) !important;
-}
-
-/* 顶栏、底栏不参与透明度，始终实心背景 */
-html.blog-wallpaper-active .VPNavBar,
-html.blog-wallpaper-active .VPNavBar .content-body,
-html.blog-wallpaper-active .VPNavBar.has-sidebar .title,
-html.blog-wallpaper-active .SiteFooterWrap {
-  background-color: var(--yuque-sidebar-bg) !important;
-}
-
-html.blog-wallpaper-active .SiteFooterWrap .footer-inner,
-html.blog-wallpaper-active .SiteFooterWrap .footer-copy,
-html.blog-wallpaper-active .SiteFooterWrap .footer-link,
-html.blog-wallpaper-active .SiteFooterWrap .footer-sep,
-html.blog-wallpaper-active .SiteFooterWrap .footer-meta {
-  opacity: 1 !important;
-  color: var(--yuque-text-secondary) !important;
-}
-
-html.blog-wallpaper-active .SiteFooterWrap .footer-link:hover {
-  color: var(--yuque-brand) !important;
-}
-
-html.blog-wallpaper-active .VPDoc > .container > .content > .content-container {
-  background: color-mix(
-    in srgb,
-    var(--yuque-paper-bg) calc(var(--blog-ui-opacity) * 100%),
-    transparent
-  ) !important;
-}
-
-@media (min-width: 960px) {
-  html.blog-wallpaper-active .VPDoc {
-    padding-bottom: var(--yuque-content-gap) !important;
-  }
-
-  html.blog-wallpaper-active .VPDoc > .container > .content {
-    padding-bottom: 0 !important;
-  }
-
-  html.blog-wallpaper-active .VPDoc > .container > .content > .content-container {
-    display: flex;
-    flex-direction: column;
-    padding-bottom: 0 !important;
-  }
-
-  html.blog-wallpaper-active .VPDoc > .container > .content > .content-container > .main {
-    flex: 1 1 auto;
-  }
-
-  html.blog-wallpaper-active .VPDocFooter {
-    flex-shrink: 0;
-    margin-left: -32px;
-    margin-right: -32px;
-    margin-bottom: 0;
-    padding: 0 32px 40px;
-    border-radius: 0 0 7px 7px;
-  }
-}
-
-html.blog-wallpaper-active .aside-container {
-  background: color-mix(
-    in srgb,
-    var(--yuque-sidebar-bg) calc(var(--blog-ui-opacity) * 100%),
-    transparent
-  ) !important;
-  --vp-c-text-1: var(--yuque-text);
-  --vp-c-text-2: var(--yuque-text);
-}
-
-/* 壁纸模式下目录区背景透明，但文字保持不透明可读 */
-html.blog-wallpaper-active .aside-container .aside-content {
-  isolation: isolate;
-  position: relative;
-  z-index: 1;
-}
-
-html.blog-wallpaper-active .aside-container .OutlineToolbar .tb-label,
-html.blog-wallpaper-active .aside-container .VPDocAsideOutline .outline-link {
-  opacity: 1 !important;
-  color: var(--yuque-text) !important;
-}
-
-html.blog-wallpaper-active .aside-container .VPDocAsideOutline .outline-link:hover,
-html.blog-wallpaper-active .aside-container .VPDocAsideOutline .outline-link.active {
-  color: var(--yuque-brand) !important;
-  opacity: 1 !important;
-}
-
-html.blog-wallpaper-active .aside-container .VPDocAsideOutline .outline-link.active {
-  background: var(--yuque-brand-soft) !important;
-}
-
-html.blog-wallpaper-active .VPHome .VPFeature {
-  background: color-mix(
-    in srgb,
-    var(--yuque-paper-bg) calc(var(--blog-ui-opacity) * 100%),
-    transparent
-  ) !important;
 }
 
 /* ========== 导航栏 ========== */
@@ -276,8 +154,6 @@ html.blog-wallpaper-active .VPHome .VPFeature {
   .VPNavBar .content-body .NavFontSizeControl,
   .VPNavBar .content-body .NavContentWidthControl,
   .VPNavBar .content-body .NavFocusModeControl,
-  .VPNavBar .content-body .NavBackgroundToggle,
-  .VPNavBar .content-body .NavOpacityControl,
   .VPNavBar .content-body .menu,
   .VPNavBar .content-body .translations,
   .VPNavBar .content-body .social-links,
@@ -308,14 +184,6 @@ html.blog-wallpaper-active .VPHome .VPFeature {
 
   .VPNavBar .content-body .NavFocusModeControl {
     order: 8;
-  }
-
-  .VPNavBar .content-body .NavBackgroundToggle {
-    order: 9;
-  }
-
-  .VPNavBar .content-body .NavOpacityControl {
-    order: 10;
   }
 
   .VPNavBar .content-body .social-links {
@@ -1367,11 +1235,6 @@ html.blog-outline-collapsed .OutlineToolbar {
   font-size: 13px !important;
 }
 
-/* ========== 阅读进度条（壁纸模式） ========== */
-html.blog-wallpaper-active .ReadingProgress .bar {
-  opacity: 0.9;
-}
-
 /* ========== 正文字号 ========== */
 html[data-blog-font-size='小'] .vp-doc h1 { font-size: 28px !important; }
 html[data-blog-font-size='小'] .vp-doc h2 { font-size: 22px !important; }
@@ -1784,9 +1647,7 @@ html.blog-focus-mode .VPDoc > .container > .content > .content-container {
 
   .NavFontSizeControl,
   .NavContentWidthControl,
-  .NavFocusModeControl,
-  .NavBackgroundToggle,
-  .NavOpacityControl {
+  .NavFocusModeControl {
     margin-left: 4px !important;
     padding-left: 6px !important;
   }
