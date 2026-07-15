@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import { useBlogUi } from '../composables/blog-ui'
-import { toIconSvg } from '../utils/icon'
-import collapseIconRaw from '../../../../static/sidebar/折叠.svg?raw'
-import expandIconRaw from '../../../../static/sidebar/展开.svg?raw'
+import { ChevronUp, ChevronDown } from 'lucide-vue-next'
 
 const { outlineExpanded, toggleOutline } = useBlogUi()
 </script>
@@ -20,12 +18,8 @@ const { outlineExpanded, toggleOutline } = useBlogUi()
         :aria-label="outlineExpanded ? '折叠目录' : '展开目录'"
         @click="toggleOutline"
       >
-        <span
-          v-if="outlineExpanded"
-          class="tb-icon"
-          v-html="toIconSvg(collapseIconRaw)"
-        />
-        <span v-else class="tb-icon" v-html="toIconSvg(expandIconRaw)" />
+        <ChevronUp v-if="outlineExpanded" class="tb-icon" :size="16" />
+        <ChevronDown v-else class="tb-icon" :size="16" />
       </button>
     </div>
   </div>
@@ -87,11 +81,5 @@ const { outlineExpanded, toggleOutline } = useBlogUi()
   align-items: center;
   justify-content: center;
   line-height: 0;
-}
-
-.tb-icon :deep(svg) {
-  display: block;
-  width: 16px;
-  height: 16px;
 }
 </style>

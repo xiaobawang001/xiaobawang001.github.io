@@ -10,16 +10,6 @@ declare module '*.png' {
   export default src
 }
 
-declare module '*.mp4' {
-  const src: string
-  export default src
-}
-
-declare module '*.svg?raw' {
-  const src: string
-  export default src
-}
-
 declare const __BUILD_TIME__: string
 
 declare module 'virtual:blog-meta' {

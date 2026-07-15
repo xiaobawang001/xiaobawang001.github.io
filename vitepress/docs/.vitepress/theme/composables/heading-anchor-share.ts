@@ -1,15 +1,12 @@
-import { toIconSvg } from '../utils/icon'
-import shareIconRaw from '../../../../static/content/分享-copy.svg?raw'
-
 const BUTTON_CLASS = 'heading-anchor-share'
 const INNER_CLASS = 'heading-title-inner'
 const ICON_CLASS = 'heading-anchor-share-icon'
 const MARKER = 'data-blog-anchor-share'
 const TOAST_CLASS = 'heading-anchor-share-toast'
 
-const SHARE_ICON = toIconSvg(shareIconRaw, 15)
+const SHARE_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>`
 
-const CHECK_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>`
+const CHECK_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>`
 
 function getAnchorUrl(id: string) {
   const hash = encodeURIComponent(id)

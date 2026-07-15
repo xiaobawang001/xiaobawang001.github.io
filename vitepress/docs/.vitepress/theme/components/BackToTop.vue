@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useData } from 'vitepress'
+import { ArrowUp } from 'lucide-vue-next'
 
 const { frontmatter, page } = useData()
 const show = ref(false)
@@ -39,12 +40,7 @@ onUnmounted(() => {
     aria-label="回到顶部"
     @click="scrollToTop"
   >
-    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-      <path
-        fill="currentColor"
-        d="M12 4l-7 7h4v9h6v-9h4l-7-7z"
-      />
-    </svg>
+    <ArrowUp :size="18" />
   </button>
 </template>
 

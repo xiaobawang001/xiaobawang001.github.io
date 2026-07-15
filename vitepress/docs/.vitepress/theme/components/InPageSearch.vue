@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
+import { Search, ArrowUp, ArrowDown, X } from 'lucide-vue-next'
 import {
   clearInPageSearch,
   getCurrentMatchIndex,
@@ -90,12 +91,7 @@ onUnmounted(() => {
       aria-label="文内搜索"
       @click="open ? closePanel() : openPanel()"
     >
-      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-        <path
-          fill="currentColor"
-          d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
-        />
-      </svg>
+      <Search :size="18" />
     </button>
 
     <div v-show="open" class="InPageSearch-panel" role="search" aria-label="文内搜索">
@@ -108,9 +104,15 @@ onUnmounted(() => {
         aria-label="搜索当前页内容"
       />
       <span class="InPageSearch-counter">{{ counterText }}</span>
-      <button type="button" class="InPageSearch-btn" title="上一个 (Shift+Enter)" @click="gotoPrevMatch">↑</button>
-      <button type="button" class="InPageSearch-btn" title="下一个 (Enter)" @click="gotoNextMatch">↓</button>
-      <button type="button" class="InPageSearch-btn close" title="关闭 (Esc)" @click="closePanel">×</button>
+      <button type="button" class="InPageSearch-btn" title="上一个 (Shift+Enter)" @click="gotoPrevMatch">
+        <ArrowUp :size="16" />
+      </button>
+      <button type="button" class="InPageSearch-btn" title="下一个 (Enter)" @click="gotoNextMatch">
+        <ArrowDown :size="16" />
+      </button>
+      <button type="button" class="InPageSearch-btn close" title="关闭 (Esc)" @click="closePanel">
+        <X :size="16" />
+      </button>
     </div>
   </div>
 </template>
@@ -195,17 +197,11 @@ onUnmounted(() => {
   background: transparent;
   color: var(--yuque-text-secondary);
   cursor: pointer;
-  font-size: 14px;
-  line-height: 1;
 }
 
 .InPageSearch-btn:hover {
   background: var(--yuque-brand-soft);
   color: var(--yuque-brand);
-}
-
-.InPageSearch-btn.close {
-  font-size: 18px;
 }
 
 @media (max-width: 767px) {

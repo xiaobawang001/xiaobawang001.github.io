@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useContentWidth } from '../composables/use-content-width'
+import { MoveHorizontal } from 'lucide-vue-next'
 
 const { contentWidthIndex, cycleContentWidth } = useContentWidth()
 
@@ -16,7 +17,7 @@ const label = computed(() => ['窄', '中', '宽'][contentWidthIndex.value] ?? '
       :aria-label="`阅读宽度 ${label}，点击切换`"
       @click="cycleContentWidth"
     >
-      <span class="width-icon" aria-hidden="true">↔</span>
+      <MoveHorizontal class="width-icon" :size="14" />
       <span class="width-badge">{{ label }}</span>
     </button>
   </div>
@@ -57,9 +58,7 @@ const label = computed(() => ['窄', '中', '宽'][contentWidthIndex.value] ?? '
 }
 
 .width-icon {
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
+  display: inline-flex;
 }
 
 .width-badge {

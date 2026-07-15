@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { useBlogUi } from '../composables/blog-ui'
-import { toIconSvg } from '../utils/icon'
-import docIconRaw from '../../../../static/sidebar/文档.svg?raw'
-import locateIconRaw from '../../../../static/sidebar/定位.svg?raw'
-import collapseIconRaw from '../../../../static/sidebar/折叠.svg?raw'
-import expandIconRaw from '../../../../static/sidebar/展开.svg?raw'
+import { FileText, LocateFixed, ChevronUp, ChevronDown } from 'lucide-vue-next'
 
 const { foldersExpanded, scrollToActiveDoc, toggleAllFolders } = useBlogUi()
 </script>
@@ -12,7 +8,7 @@ const { foldersExpanded, scrollToActiveDoc, toggleAllFolders } = useBlogUi()
 <template>
   <div class="SidebarToolbar" role="toolbar" aria-label="侧边栏工具">
     <div class="tb-left">
-      <span class="tb-icon" v-html="toIconSvg(docIconRaw)" />
+      <FileText class="tb-icon" :size="16" />
       <span class="tb-label">文档目录</span>
     </div>
     <div class="tb-actions">
@@ -23,7 +19,7 @@ const { foldersExpanded, scrollToActiveDoc, toggleAllFolders } = useBlogUi()
         aria-label="定位到当前文档"
         @click="scrollToActiveDoc"
       >
-        <span class="tb-icon" v-html="toIconSvg(locateIconRaw)" />
+        <LocateFixed class="tb-icon" :size="16" />
       </button>
       <button
         type="button"
@@ -32,12 +28,8 @@ const { foldersExpanded, scrollToActiveDoc, toggleAllFolders } = useBlogUi()
         :aria-label="foldersExpanded ? '折叠全部分类' : '展开全部分类'"
         @click="toggleAllFolders"
       >
-        <span
-          v-if="foldersExpanded"
-          class="tb-icon"
-          v-html="toIconSvg(collapseIconRaw)"
-        />
-        <span v-else class="tb-icon" v-html="toIconSvg(expandIconRaw)" />
+        <ChevronUp v-if="foldersExpanded" class="tb-icon" :size="16" />
+        <ChevronDown v-else class="tb-icon" :size="16" />
       </button>
     </div>
   </div>
@@ -104,11 +96,5 @@ const { foldersExpanded, scrollToActiveDoc, toggleAllFolders } = useBlogUi()
   justify-content: center;
   line-height: 0;
   flex-shrink: 0;
-}
-
-.tb-icon :deep(svg) {
-  display: block;
-  width: 16px;
-  height: 16px;
 }
 </style>

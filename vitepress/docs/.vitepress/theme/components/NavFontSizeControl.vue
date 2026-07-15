@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useFontSize } from '../composables/use-font-size'
+import { Type } from 'lucide-vue-next'
 
 const { fontSizeIndex, cycleFontSize } = useFontSize()
 
@@ -16,7 +17,7 @@ const label = computed(() => ['小', '中', '大'][fontSizeIndex.value] ?? '中'
       :aria-label="`正文字号 ${label}，点击切换`"
       @click="cycleFontSize"
     >
-      <span class="font-icon" aria-hidden="true">A</span>
+      <Type class="font-icon" :size="15" />
       <span class="font-badge">{{ label }}</span>
     </button>
   </div>
@@ -57,9 +58,7 @@ const label = computed(() => ['小', '中', '大'][fontSizeIndex.value] ?? '中'
 }
 
 .font-icon {
-  font-size: 15px;
-  font-weight: 700;
-  line-height: 1;
+  display: inline-flex;
 }
 
 .font-badge {
