@@ -204,7 +204,7 @@ body {
   }
 
   .VPNavBar .content-body .search {
-    order: 1;
+    order: 2;
     flex: 0 0 auto !important;
     min-width: 0;
     max-width: 168px;
@@ -239,7 +239,7 @@ body {
   }
 
   .VPNavBar .content-body .menu {
-    order: 2;
+    order: 1;
   }
 
   .VPNavBar .content-body .translations {
@@ -579,7 +579,7 @@ body {
   }
 
   .VPNavBar.has-sidebar .VPNavBarMenu {
-    display: none !important;
+    display: flex !important;
   }
 
   .VPNavBar.has-sidebar .content-body {
