@@ -61,7 +61,7 @@ const vitePressConfig = defineConfig({
           root: {
             translations: {
               button: {
-                buttonText: '搜索 Ctrl + K',
+                buttonText: '搜索',
                 buttonAriaLabel: '搜索文档',
               },
               modal: {

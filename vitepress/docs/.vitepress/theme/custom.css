@@ -1147,11 +1147,17 @@ html.blog-folders-all-collapsed #VPSidebarNav .VPSidebarItem.collapsible .caret-
   box-shadow: 0 0 0 2px var(--yuque-brand-soft) !important;
 }
 
-.VPNavBarSearch .DocSearch-Button-Keys {
-  display: none !important;
-}
+.VPNavBarSearch .DocSearch-Button-Keys,
 .VPNavBarSearch .DocSearch-Button-Placeholder {
   color: var(--yuque-text-secondary) !important;
+}
+
+.VPNavBarSearch .DocSearch-Button-Key + .DocSearch-Button-Key {
+  margin-left: 2px;
+}
+.VPNavBarSearch .DocSearch-Button-Key + .DocSearch-Button-Key::before {
+  content: '+';
+  margin-right: 2px;
 }
 
 /* ========== 标题锚点分享 ========== */
