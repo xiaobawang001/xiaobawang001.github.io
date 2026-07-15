@@ -378,6 +378,7 @@ body {
 
 
 
+.VPSidebar .VPSidebarItem[data-sidebar-folder] > .item .text::before,
 .VPSidebar .VPSidebarItem.collapsible > .item .text::before {
   content: '';
   display: inline-block;
@@ -391,7 +392,7 @@ body {
   mask: var(--vp-sidebar-icon-folder) no-repeat center / contain;
 }
 
-.VPSidebar .VPSidebarItem.is-link:not(.collapsible) > .item .text::before {
+.VPSidebar .VPSidebarItem.is-link:not([data-sidebar-folder]):not(.collapsible) > .item .text::before {
   content: '';
   display: inline-block;
   flex-shrink: 0;

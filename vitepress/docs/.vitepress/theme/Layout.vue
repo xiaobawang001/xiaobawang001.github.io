@@ -24,10 +24,11 @@ import { setupCodeBlockEnhance } from './composables/code-block-enhance'
 import { setupOutlineNavigation } from './composables/outline-nav'
 import { setupSidebarLayout } from './composables/sidebar-layout'
 import { setupSidebarPersist } from './composables/use-sidebar-persist'
+import { applySidebarFolderIcons } from './composables/sidebar-icons'
 
 const { Layout: DefaultLayout } = DefaultTheme
 const route = useRoute()
-const { frontmatter } = useData()
+const { frontmatter, theme } = useData()
 const isHome = computed(() => frontmatter.value.layout === 'home')
 
 let removeSidebarNavClick: (() => void) | null = null
@@ -59,6 +60,7 @@ function refreshDocEnhancements() {
     removeHeadingAnchorShare?.()
     removeHeadingAnchorShare = setupHeadingAnchorShare()
     setupCodeBlockEnhance()
+    applySidebarFolderIcons(theme.value.sidebar)
   })
 }
 
