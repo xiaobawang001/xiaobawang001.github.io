@@ -8,7 +8,7 @@ const label = computed(() => ['小', '中', '大'][fontSizeIndex.value] ?? '中'
 </script>
 
 <template>
-  <div class="nav-ctrl">
+  <div class="NavFontSizeControl nav-ctrl">
     <el-tooltip :content="`字号：${label}（点击切换）`" :show-after="400">
       <el-button text size="small" @click="cycleFontSize">
         <Type :size="15" />

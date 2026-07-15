@@ -8,7 +8,7 @@ const label = computed(() => ['窄', '中', '宽'][contentWidthIndex.value] ?? '
 </script>
 
 <template>
-  <div class="nav-ctrl">
+  <div class="NavContentWidthControl nav-ctrl">
     <el-tooltip :content="`阅读宽度：${label}（点击切换）`" :show-after="400">
       <el-button text size="small" @click="cycleContentWidth">
         <MoveHorizontal :size="14" />

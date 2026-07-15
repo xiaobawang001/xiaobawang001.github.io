@@ -10,7 +10,7 @@ const visible = computed(() => { if (page.value.isNotFound) return false; const 
 </script>
 
 <template>
-  <div v-if="visible" class="nav-ctrl">
+  <div v-if="visible" class="NavFocusModeControl nav-ctrl">
     <el-tooltip :content="focusMode ? '退出专注模式' : '专注模式（隐藏侧栏与目录）'" :show-after="400">
       <el-button text size="small" :type="focusMode ? 'primary' : undefined" @click="toggleFocusMode">
         <Eye :size="18" />
