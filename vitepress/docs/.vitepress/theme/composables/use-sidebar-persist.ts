@@ -1,7 +1,6 @@
 import {
   foldersExpanded,
   allFoldersForcedCollapsed,
-  outlineExpanded,
   applyUiClasses,
 } from './blog-ui'
 
@@ -10,7 +9,6 @@ const COLLAPSED_KEY = 'blog-sidebar-collapsed'
 
 interface UiPrefs {
   foldersExpanded?: boolean
-  outlineExpanded?: boolean
 }
 
 function readUiPrefs(): UiPrefs {
@@ -28,7 +26,6 @@ function saveUiPrefs() {
     UI_STORAGE_KEY,
     JSON.stringify({
       foldersExpanded: foldersExpanded.value,
-      outlineExpanded: outlineExpanded.value,
     }),
   )
 }
@@ -80,9 +77,6 @@ function restoreCollapsedFolders() {
 
 export function initSidebarPersistFromStorage() {
   const prefs = readUiPrefs()
-  if (typeof prefs.outlineExpanded === 'boolean') {
-    outlineExpanded.value = prefs.outlineExpanded
-  }
   if (typeof prefs.foldersExpanded === 'boolean') {
     foldersExpanded.value = prefs.foldersExpanded
     allFoldersForcedCollapsed.value = !prefs.foldersExpanded

@@ -1127,15 +1127,14 @@ html.blog-folders-all-collapsed #VPSidebarNav .VPSidebarItem.collapsible .caret-
   color: var(--yuque-text) !important;
 }
 
-/* ========== 大纲折叠：保留一级标题，隐藏子级。点击h2可手动展开 ========== */
-html.blog-outline-collapsed .VPDocAsideOutline .content .VPDocOutlineItem.nested:not(.outline-manual-expand) {
-  display: none !important;
-}
-
-html.blog-outline-collapsed .OutlineToolbar {
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  border-bottom: none !important;
+/* ========== 无目录占位 ========== */
+.VPDocAsideOutline:not(.has-outline)::after {
+  content: '无目录';
+  display: block;
+  padding: 24px 0;
+  text-align: center;
+  color: var(--yuque-text-secondary);
+  font-size: 13px;
 }
 
 /* ========== 顶栏搜索 ========== */
