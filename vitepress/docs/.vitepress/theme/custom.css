@@ -274,10 +274,6 @@ body {
 }
 
 @media (min-width: 768px) and (max-width: 1180px) {
-  .VPNavBarSearch .DocSearch-Button-Keys {
-    display: none !important;
-  }
-
   .VPNavBarSearch,
   .VPNavBar .content-body .search {
     max-width: 120px;
@@ -1151,7 +1147,9 @@ html.blog-folders-all-collapsed #VPSidebarNav .VPSidebarItem.collapsible .caret-
   box-shadow: 0 0 0 2px var(--yuque-brand-soft) !important;
 }
 
-.VPNavBarSearch .DocSearch-Button-Keys,
+.VPNavBarSearch .DocSearch-Button-Keys {
+  display: none !important;
+}
 .VPNavBarSearch .DocSearch-Button-Placeholder {
   color: var(--yuque-text-secondary) !important;
 }
