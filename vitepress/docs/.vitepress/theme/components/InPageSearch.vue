@@ -30,7 +30,7 @@ onUnmounted(() => { document.removeEventListener('keydown', onKeydown, true); cl
 <template>
   <div v-if="visible" class="InPageSearch">
     <el-tooltip content="文内搜索 (Ctrl+Shift+F)" :show-after="400">
-      <el-button text circle class="isp-trigger" :class="{ active: open }" @click="open ? closePanel() : openPanel()">
+      <el-button class="isp-trigger" :class="{ active: open }" @click="open ? closePanel() : openPanel()">
         <Search :size="18" />
       </el-button>
     </el-tooltip>
@@ -46,7 +46,19 @@ onUnmounted(() => { document.removeEventListener('keydown', onKeydown, true); cl
 
 <style scoped>
 .InPageSearch { position: fixed; right: 24px; bottom: 84px; z-index: 45; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; }
-.isp-trigger { width: 40px; height: 40px; }
+.isp-trigger {
+  width: 40px; height: 40px;
+  border: 1px solid var(--yuque-border-light);
+  border-radius: 8px;
+  background: var(--yuque-paper-bg);
+  color: var(--yuque-text-secondary);
+  box-shadow: var(--yuque-shadow-paper);
+}
+.isp-trigger:hover, .isp-trigger.active {
+  background: var(--yuque-brand-soft);
+  border-color: var(--yuque-brand);
+  color: var(--yuque-brand);
+}
 .isp-panel { display: flex; align-items: center; gap: 6px; padding: 8px 10px; border: 1px solid var(--yuque-border-light); border-radius: 10px; background: var(--yuque-paper-bg); box-shadow: var(--yuque-shadow-paper); }
 .isp-input { width: 180px; }
 .isp-counter { min-width: 52px; font-size: 12px; color: var(--yuque-text-secondary); text-align: center; }
