@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useContentWidth } from '../composables/use-content-width'
-import { MoveHorizontal } from '@lucide/vue'
+import { Maximize2 } from '@lucide/vue'
 
 const { contentWidthIndex, cycleContentWidth } = useContentWidth()
 const label = computed(() => ['窄', '中', '宽'][contentWidthIndex.value] ?? '中')
@@ -11,7 +11,7 @@ const label = computed(() => ['窄', '中', '宽'][contentWidthIndex.value] ?? '
   <div class="NavContentWidthControl nav-ctrl">
     <el-tooltip :content="`阅读宽度：${label}（点击切换）`" :show-after="400">
       <el-button text size="small" @click="cycleContentWidth">
-        <MoveHorizontal :size="14" />
+        <Maximize2 :size="16" />
         <span class="ctrl-badge">{{ label }}</span>
       </el-button>
     </el-tooltip>
